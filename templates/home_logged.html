@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Subrss - Inicio{% endblock %}
+{% block content %}
+<section id="content">
+	{% if rss_error %}
+	<div class="error">
+		<strong>Aviso:</strong><br />
+		Ha habido un error procesando el feed RSS proporcionado. ¿Estás seguro de que es correcto y es de <a href="http://showrss.karmorra.info" title="ShowRSS">ShowRSS</a>? Actualízalo en la <a href="{{ url_for('settings') }}#rss" title="Configuración">página de configuración</a>.
+	</div>
+	{% endif %}
+	
+	{% if not rss %}
+	<div class="warning">
+		<strong>Aviso:</strong><br />
+		Parece ser que no has introducido ningún feed rss con tus series. Actualízalo en la <a href="{{ url_for('settings') }}#rss" title="Configuración">página de configuración</a>.
+	</div>
+	{% endif %}
+	
+	<div id="home_container">
+		<div class="spinner"></div>
+		<p style="text-align:center">Cargando subtítulos de los últimos capítulos de tu feed...</p>
+	</div>
+</section>
+{% endblock %}
+{% block footer_js %}
+<script type="text/javascript">
+$.get('/retrieve_subs', function (data) {
+	$('#home_container').html(data);
+});
+</script>
+{% endblock %}

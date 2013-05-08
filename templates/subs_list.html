@@ -1,0 +1,29 @@
+{% if not rss_error %}
+<form name="download_all" method="POST" action="/download_all">
+<div class="buttons">
+	<input type="submit" class="button green large-button" onclick="this.value = 'Descargando...';" value="Descargar los 10 últimos" />
+</div>
+</form>
+<ul class="subs_list">
+{% for item in rss_items %}
+<li>
+	<form method="POST" action="/download_sub" style="padding:0;margin:0;display:inline">
+	<p class="title">{{ item.title }}</p>
+	<p class="time">Hace {{ item.time }}</p>
+	<p class="download">
+		<input type="submit" class="button green" value="Descargar" />
+	</p>
+	<input type="hidden" name="file" value="{{ item.filename }}" />
+	<input type="hidden" name="title" value="{{ item.title }}" />
+	<input type="hidden" name="sub" value="{{ item.sub_url }}" />
+	</form>
+	<div class="clear"></div>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<div class="error">
+	<strong>Error:</strong><br />
+	Ha habido un error procesando el feed RSS proporcionado. ¿Estás seguro de que es correcto y es de <a href="http://showrss.karmorra.info" title="ShowRSS">ShowRSS</a>? Actualízalo en la <a href="{{ url_for('settings') }}#rss" title="Configuración">página de configuración</a>.
+</div>
+{% endif %}

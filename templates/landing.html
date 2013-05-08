@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Subrss{% endblock %}
+{% block content %}
+<section id="content">
+	<div id="home_container landing">
+		<div class="landing_block">
+			<div class="landing_image"><img src="{{ url_for('static', filename='img/feed.png') }}" border="0" alt="Feed" /></div>
+			<p>Solo necesitas un feed rss de <a href="http://showrss.karmorra.info" title="ShowRSS">ShowRSS</a> con las series a las que sigues.</p>
+		</div>
+		<div class="landing_block">
+			<div class="landing_image"><img src="{{ url_for('static', filename='img/icon_subs.png') }}" border="0" alt="Subtítulos" /></div>
+			<p>Y tendrás a tu alcance todos los subtítulos de tus series favoritas.</p>
+		</div>
+		<div class="landing_block">
+			<div class="landing_image"><img src="{{ url_for('static', filename='img/icon_subrss.png') }}" border="0" alt="Subrss" /></div>
+			<p>SubRSS hace que buscar subtítulos sea más sencillo.</p>
+		</div>
+		<div class="landing_block">
+			<div class="landing_image"><img src="{{ url_for('static', filename='img/click_button.png') }}" border="0" alt="Subrss" /></div>
+			<p>Tendrás tus subtítulos a tan solo un click de distancia.</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+</section>
+{% endblock %}
